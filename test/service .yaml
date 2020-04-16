@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    name: test-django
+  name: test-django
+spec:
+  ports:
+  - nodePort: 31463
+    port: 8000
+    protocol: TCP
+    targetPort: 8000
+  selector:
+    name: test-django
+  type: NodePort

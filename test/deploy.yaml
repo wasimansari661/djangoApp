@@ -1,0 +1,28 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name:  test-django
+  labels:
+    name:  test-django
+spec:
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        name:  test-django
+    spec:
+      containers:
+      - image: "wasimansari661/django"
+        name: test-django
+        resources:
+          requests:
+            cpu: "20m"
+            memory: "55M"      
+        ports:
+        - containerPort:  8000
+          name: test-django
+      restartPolicy: Always
